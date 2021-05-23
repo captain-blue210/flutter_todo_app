@@ -11,10 +11,18 @@ class _AddTaskState extends State<AddTask> {
   final Status _status = Status.doing;
 
   final addTaskController = TextEditingController();
+  late FocusNode addTaskFocusNode;
+
+  @override
+  void initState() {
+    super.initState();
+    addTaskFocusNode = FocusNode();
+  }
 
   @override
   void dispose() {
     addTaskController.dispose();
+    addTaskFocusNode.dispose();
     super.dispose();
   }
 
@@ -26,12 +34,16 @@ class _AddTaskState extends State<AddTask> {
         margin: const EdgeInsets.only(bottom: 12),
         child: TextField(
           onEditingComplete: () async {
-            setState(() => {_taskName = addTaskController.text});
-            await add();
+            if (addTaskController.text.isNotEmpty) {
+              setState(() => {_taskName = addTaskController.text});
+              await add();
+            }
             addTaskController.clear();
-            FocusScope.of(context).requestFocus(FocusNode());
+            addTaskFocusNode.unfocus();
+            // FocusScope.of(context).requestFocus(FocusNode());
           },
           controller: addTaskController,
+          focusNode: addTaskFocusNode,
           decoration: const InputDecoration(
             prefixIcon: const Icon(
               Icons.add_circle,
