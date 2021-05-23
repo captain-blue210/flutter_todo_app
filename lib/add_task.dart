@@ -13,18 +13,23 @@ class _AddTaskState extends State<AddTask> {
   final addTaskController = TextEditingController();
 
   @override
+  void dispose() {
+    addTaskController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.bottomCenter,
-      width: double.infinity,
+    return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.all(10),
         margin: const EdgeInsets.only(bottom: 12),
         child: TextField(
           onEditingComplete: () async {
-            addTaskController.clear();
-            _taskName = addTaskController.text;
+            setState(() => {_taskName = addTaskController.text});
             await add();
+            addTaskController.clear();
+            FocusScope.of(context).requestFocus(FocusNode());
           },
           controller: addTaskController,
           decoration: const InputDecoration(
@@ -50,7 +55,7 @@ class _AddTaskState extends State<AddTask> {
     final collection = FirebaseFirestore.instance.collection('tasks');
     await collection.add(<String, dynamic>{
       'taskName': _taskName,
-      'status': _status.toString(),
+      'status': _status.toString().split('.')[1],
       'createdAt': Timestamp.now(),
     });
   }

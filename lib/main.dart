@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo_app/add_task.dart';
+import 'package:flutter_todo_app/task_list.dart';
 
-void main() async {
+import 'add_task.dart';
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
@@ -25,7 +27,15 @@ class MainPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('TODO'),
       ),
-      body: AddTask(),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            TaskList(),
+            AddTask(),
+          ],
+        ),
+      ),
     );
   }
 }
