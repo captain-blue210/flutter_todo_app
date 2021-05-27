@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo_app/add_task.dart';
+import 'package:flutter_todo_app/Status.dart';
+import 'package:flutter_todo_app/task_detail.dart';
+import 'package:flutter_todo_app/task_logic.dart';
 
 class TaskList extends StatelessWidget {
   @override
@@ -30,31 +32,26 @@ class TaskList extends StatelessWidget {
             return Card(
               child: ListTile(
                 leading: IconButton(
-                  icon: e['status'] == Status.doing.toString().split('.')[1]
+                  icon: e['status'] == TaskLogic.statusToString(Status.doing)
                       ? const Icon(Icons.check_box_outline_blank)
                       : const Icon(Icons.check_box),
                   onPressed: () {
-                    toggle(e);
+                    TaskLogic.toggle(e.id);
                   },
                 ),
                 title: Text('${e['taskName']}'),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute<void>(
+                        builder: (context) => TaskDetail(e.id),
+                      ));
+                },
               ),
             );
           }).toList(),
         );
       },
     );
-  }
-
-  Future<void> toggle(QueryDocumentSnapshot<Object?> doc) async {
-    return FirebaseFirestore.instance
-        .collection('tasks')
-        .doc(doc.id)
-        .update(<String, String>{
-      'status':
-          doc['status'].toString() == Status.doing.toString().split('.')[1]
-              ? Status.done.toString().split('.')[1]
-              : Status.doing.toString().split('.')[1]
-    });
   }
 }

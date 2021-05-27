@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_app/Status.dart';
 
 class AddTask extends StatefulWidget {
   @override
@@ -72,5 +73,3 @@ class _AddTaskState extends State<AddTask> {
     });
   }
 }
-
-enum Status { doing, done }
