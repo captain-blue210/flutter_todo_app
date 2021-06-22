@@ -28,23 +28,24 @@ class TaskList extends StatelessWidget {
           return const Text('Something went wrong');
         }
         return ListView(
-          children: snapshot.data!.docs.map((e) {
+          children: snapshot.data!.docs.map((DocumentSnapshot document) {
+            final data = document.data()! as Map<String, dynamic>;
             return Card(
               child: ListTile(
                 leading: IconButton(
-                  icon: e['status'] == TaskLogic.statusToString(Status.doing)
+                  icon: data['status'] == TaskLogic.statusToString(Status.doing)
                       ? const Icon(Icons.check_box_outline_blank)
                       : const Icon(Icons.check_box),
                   onPressed: () {
-                    TaskLogic.toggle(e.id);
+                    TaskLogic.toggle(data['id'].toString());
                   },
                 ),
-                title: Text('${e['taskName']}'),
+                title: Text('${data['taskName']}'),
                 onTap: () {
                   Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (context) => TaskDetail(e.id),
+                        builder: (context) => TaskDetail(data['id'].toString()),
                       ));
                 },
               ),

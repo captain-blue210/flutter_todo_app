@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/Status.dart';
 import 'package:flutter_todo_app/task_logic.dart';
@@ -35,7 +36,7 @@ class _TaskDetailState extends State<TaskDetail> {
       stream:
           FirebaseFirestore.instance.collection('tasks').doc(docId).snapshots(),
       builder: (context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-        if (!snapshot.hasData) {
+        if (!snapshot.hasData || !snapshot.data!.exists) {
           return const Center(
             child: const CircularProgressIndicator(),
           );
@@ -43,6 +44,7 @@ class _TaskDetailState extends State<TaskDetail> {
         if (snapshot.hasError) {
           return const Text('Something went wrong');
         }
+        final dateFormat = DateFormat('yyyy年MM月dd日');
         return Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -81,12 +83,39 @@ class _TaskDetailState extends State<TaskDetail> {
                       flex: 2,
                     ),
                     Text(
-                      '''作成日:${DateFormat('yyyy年MM月dd日').format((snapshot.data!['createdAt'] as Timestamp).toDate())}''',
+                      '''作成日:${dateFormat.format((snapshot.data!['createdAt'] as Timestamp).toDate())}''',
                     ),
                     const Spacer(),
                     IconButton(
                       onPressed: () {
-                        TaskLogic.delete(docId);
+                        showCupertinoModalPopup<void>(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return CupertinoActionSheet(
+                                message: Text(
+                                  // ignore: lines_longer_than_80_chars
+                                  '${snapshot.data!["taskName"].toString()} will be permanentally deleted',
+                                  style: const TextStyle(fontSize: 15),
+                                ),
+                                actions: <Widget>[
+                                  CupertinoActionSheetAction(
+                                    child: const Text('Delete Task'),
+                                    isDestructiveAction: true,
+                                    onPressed: () async {
+                                      await TaskLogic.delete(docId);
+                                      Navigator.of(context)
+                                          .popUntil((route) => route.isFirst);
+                                    },
+                                  )
+                                ],
+                                cancelButton: CupertinoActionSheetAction(
+                                  child: const Text('Cancel'),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                              );
+                            });
                       },
                       icon: const Icon(Icons.delete),
                     )

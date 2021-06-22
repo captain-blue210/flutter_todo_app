@@ -1,6 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_todo_app/Status.dart';
+import 'package:flutter_todo_app/task_logic.dart';
 
 class AddTask extends StatefulWidget {
   @override
@@ -8,9 +7,6 @@ class AddTask extends StatefulWidget {
 }
 
 class _AddTaskState extends State<AddTask> {
-  String _taskName = '';
-  final Status _status = Status.doing;
-
   final addTaskController = TextEditingController();
   late FocusNode addTaskFocusNode;
 
@@ -36,12 +32,10 @@ class _AddTaskState extends State<AddTask> {
         child: TextField(
           onEditingComplete: () async {
             if (addTaskController.text.isNotEmpty) {
-              setState(() => {_taskName = addTaskController.text});
-              await add();
+              await TaskLogic.add(addTaskController.text);
             }
             addTaskController.clear();
             addTaskFocusNode.unfocus();
-            // FocusScope.of(context).requestFocus(FocusNode());
           },
           controller: addTaskController,
           focusNode: addTaskFocusNode,
@@ -62,14 +56,5 @@ class _AddTaskState extends State<AddTask> {
         ),
       ),
     );
-  }
-
-  Future add() async {
-    final collection = FirebaseFirestore.instance.collection('tasks');
-    await collection.add(<String, dynamic>{
-      'taskName': _taskName,
-      'status': _status.toString().split('.')[1],
-      'createdAt': Timestamp.now(),
-    });
   }
 }
