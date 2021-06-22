@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_app/mi_card/mi_card.dart';
 import 'package:flutter_todo_app/task_list.dart';
 
 import 'add_task.dart';
@@ -26,6 +27,18 @@ class MainPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('TODO'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (context) => MiCard(),
+                  ));
+            },
+            icon: const Icon(Icons.person),
+          )
+        ],
       ),
       body: Center(
         child: Column(
