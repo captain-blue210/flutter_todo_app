@@ -10,34 +10,63 @@ class MiCard extends StatelessWidget {
         backgroundColor: Colors.teal,
       ),
       body: SafeArea(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Container(
-              width: 100,
-              color: Colors.red,
+            CircleAvatar(
+              radius: 50,
+              backgroundImage: AssetImage("images/myicon2.jpg"),
             ),
-            Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: 100,
-                    height: 100,
-                    color: Colors.yellow,
-                  ),
-                  Container(
-                    width: 100,
-                    height: 100,
-                    color: Colors.green,
-                  ),
-                ],
+            Text(
+              'Captain Blue',
+              style: TextStyle(
+                  fontFamily: 'Pacifico',
+                  fontSize: 40,
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              'Application Engineer',
+              style: TextStyle(
+                fontFamily: 'Source Sans Pro',
+                fontSize: 20,
+                letterSpacing: 2.5,
+                color: Colors.teal.shade100,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            Container(
-              width: 100,
-              color: Colors.blue,
-            )
+            Card(
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                child: ListTile(
+                  leading: Icon(
+                    Icons.phone,
+                    color: Colors.teal,
+                  ),
+                  title: Text(
+                    '9999-999-999',
+                    style: TextStyle(
+                      color: Colors.teal.shade900,
+                      fontFamily: 'Source Sans Pro',
+                      fontSize: 20,
+                    ),
+                  ),
+                )),
+            Card(
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                child: ListTile(
+                  leading: Icon(
+                    Icons.email,
+                    color: Colors.teal,
+                  ),
+                  title: Text(
+                    'captain.blue210@gmail.com',
+                    style: TextStyle(
+                      color: Colors.teal.shade900,
+                      fontFamily: 'Source Sans Pro',
+                      fontSize: 20,
+                    ),
+                  ),
+                )),
           ],
         ),
       ),
