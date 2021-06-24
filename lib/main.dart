@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_app/dice/dice.dart';
 import 'package:flutter_todo_app/mi_card/mi_card.dart';
-import 'package:flutter_todo_app/task_list.dart';
 
 import 'add_task.dart';
 
@@ -44,7 +44,17 @@ class MainPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            TaskList(),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (context) => Dice(),
+                    ));
+              },
+              child: Text('Dice'),
+            ),
+            // TaskList(),
             AddTask(),
           ],
         ),
