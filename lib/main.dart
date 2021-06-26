@@ -52,7 +52,7 @@ class MainPage extends StatelessWidget {
                       builder: (context) => Dice(),
                     ));
               },
-              child: Text('Dice'),
+              child: Text('Dicee'),
             ),
             // TaskList(),
             AddTask(),
