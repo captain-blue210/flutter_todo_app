@@ -30,6 +30,7 @@ class _DiceState extends State<Dice> {
                       onPressed: () {
                         setState(() {
                           leftDiceNumber = this.getRandomInt();
+                          rightDiceNumber = this.getRandomInt();
                         });
                       },
                       child: Image.asset('images/dice$leftDiceNumber.png')),
@@ -41,6 +42,7 @@ class _DiceState extends State<Dice> {
                   child: TextButton(
                       onPressed: () {
                         setState(() {
+                          leftDiceNumber = this.getRandomInt();
                           rightDiceNumber = this.getRandomInt();
                         });
                       },
