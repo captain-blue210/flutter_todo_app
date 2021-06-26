@@ -42,7 +42,7 @@ class MainPage extends StatelessWidget {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             TextButton(
               onPressed: () {
