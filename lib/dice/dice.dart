@@ -27,12 +27,7 @@ class _DiceState extends State<Dice> {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          leftDiceNumber = this.getRandomInt();
-                          rightDiceNumber = this.getRandomInt();
-                        });
-                      },
+                      onPressed: changeDiceState,
                       child: Image.asset('images/dice$leftDiceNumber.png')),
                 ),
               ),
@@ -40,12 +35,7 @@ class _DiceState extends State<Dice> {
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: TextButton(
-                      onPressed: () {
-                        setState(() {
-                          leftDiceNumber = this.getRandomInt();
-                          rightDiceNumber = this.getRandomInt();
-                        });
-                      },
+                      onPressed: changeDiceState,
                       child: Image.asset('images/dice$rightDiceNumber.png')),
                 ),
               )
@@ -57,5 +47,12 @@ class _DiceState extends State<Dice> {
 
     int getRandomInt(){
       return Random().nextInt(6) + 1;
+    }
+
+    void changeDiceState(){
+      setState(() {
+        leftDiceNumber = this.getRandomInt();
+        rightDiceNumber = this.getRandomInt();
+      });
     }
   }
