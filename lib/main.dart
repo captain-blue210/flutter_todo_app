@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_app/axis/axis_sample.dart';
 import 'package:flutter_todo_app/dice/dice.dart';
+import 'package:flutter_todo_app/magicball/magic_ball.dart';
 import 'package:flutter_todo_app/mi_card/mi_card.dart';
 
 import 'add_task.dart';
@@ -53,6 +55,26 @@ class MainPage extends StatelessWidget {
                     ));
               },
               child: Text('Dicee'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (context) => AxisSample(),
+                    ));
+              },
+              child: Text('Axis Sample'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (context) => MagicBall(),
+                    ));
+              },
+              child: Text('Magic Ball'),
             ),
             // TaskList(),
             AddTask(),
