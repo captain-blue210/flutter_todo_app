@@ -76,6 +76,16 @@ class MainPage extends StatelessWidget {
               },
               child: Text('Magic Ball'),
             ),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (context) => MagicBall(),
+                    ));
+              },
+              child: Text('Xlyophone'),
+            ),
             // TaskList(),
             AddTask(),
           ],
