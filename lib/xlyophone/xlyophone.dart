@@ -9,7 +9,11 @@ class Xlyophone extends StatefulWidget {
 }
 
 class _XlyophoneState extends State<Xlyophone> {
-  static AudioCache player = AudioCache();
+
+  void playSound(int soundNo){
+    final AudioCache player = AudioCache();
+    player.play('note$soundNo.wav');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,7 @@ class _XlyophoneState extends State<Xlyophone> {
                 backgroundColor: Colors.red,
               ),
               onPressed: () async {
-                player.play('note1.wav');
+                playSound(1);
               },
               child: Text(''),
             ),
@@ -33,7 +37,7 @@ class _XlyophoneState extends State<Xlyophone> {
                 backgroundColor: Colors.orange,
               ),
               onPressed: () async {
-                player.play('note2.wav');
+                playSound(2);
               },
               child: Text(''),
             ),
@@ -42,7 +46,7 @@ class _XlyophoneState extends State<Xlyophone> {
                 backgroundColor: Colors.yellow,
               ),
               onPressed: () async {
-                player.play('note3.wav');
+                playSound(3);
               },
               child: Text(''),
             ),
@@ -51,7 +55,7 @@ class _XlyophoneState extends State<Xlyophone> {
                 backgroundColor: Colors.lightGreen,
               ),
               onPressed: () async {
-                player.play('note4.wav');
+                playSound(4);
               },
               child: Text(''),
             ),
@@ -60,7 +64,7 @@ class _XlyophoneState extends State<Xlyophone> {
                 backgroundColor: Colors.green,
               ),
               onPressed: () async {
-                player.play('note5.wav');
+                playSound(5);
               },
               child: Text(''),
             ),
@@ -69,7 +73,7 @@ class _XlyophoneState extends State<Xlyophone> {
                 backgroundColor: Colors.blue,
               ),
               onPressed: () async {
-                player.play('note6.wav');
+                playSound(6);
               },
               child: Text(''),
             ),
@@ -78,7 +82,7 @@ class _XlyophoneState extends State<Xlyophone> {
                 backgroundColor: Colors.purple,
               ),
               onPressed: () async {
-                player.play('note7.wav');
+                playSound(7);
               },
               child: Text(''),
             ),
