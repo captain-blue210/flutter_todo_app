@@ -26,6 +26,19 @@ class MyApp extends StatelessWidget {
 }
 
 class MainPage extends StatelessWidget {
+  Widget buildLinkButton(BuildContext context, Widget widget, String linkName){
+    return TextButton(
+      onPressed: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute<void>(
+              builder: (context) => widget,
+            ));
+      },
+      child: Text('$linkName'),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,46 +61,10 @@ class MainPage extends StatelessWidget {
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (context) => Dice(),
-                    ));
-              },
-              child: Text('Dicee'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (context) => AxisSample(),
-                    ));
-              },
-              child: Text('Axis Sample'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (context) => MagicBall(),
-                    ));
-              },
-              child: Text('Magic Ball'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute<void>(
-                      builder: (context) => Xlyophone(),
-                    ));
-              },
-              child: Text('Xlyophone'),
-            ),
+            buildLinkButton(context, Dice(), 'Dicee'),
+            buildLinkButton(context, AxisSample(), 'Axis Sample'),
+            buildLinkButton(context, MagicBall(), 'Ask me anything'),
+            buildLinkButton(context, Xlyophone(), 'Xlyophone'),
             TaskList(),
             AddTask(),
           ],
