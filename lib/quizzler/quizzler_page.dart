@@ -8,6 +8,14 @@ class QuizzlerPage extends StatefulWidget {
 }
 
 class _QuizzlerPageState extends State<QuizzlerPage> {
+  List<Icon> scoreKeeper = [
+    const Icon(Icons.check, color: Colors.green),
+    const Icon(Icons.close, color: Colors.red),
+    const Icon(Icons.check, color: Colors.green),
+    const Icon(Icons.close, color: Colors.red),
+    const Icon(Icons.check, color: Colors.green),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,8 +27,8 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: const <Widget>[
-            Expanded(
+          children: <Widget>[
+            const Expanded(
               flex: 5,
               child: Padding(
                 padding: EdgeInsets.all(10),
@@ -36,6 +44,55 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
                 ),
               ),
             ),
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(15.0),
+                child: TextButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.green),
+                  ),
+                  onPressed: () {
+                    //The user picked true.
+                    scoreKeeper.add(const Icon(
+                      Icons.check,
+                      color: Colors.green,
+                    ));
+                  },
+                  child: const Text(
+                    'True',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(15),
+                child: TextButton(
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.red),
+                  ),
+                  onPressed: () {
+                    //The user picked false.
+                  },
+                  child: const Text(
+                    'False',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Row(
+              children: scoreKeeper,
+            )
           ],
         ),
       ),
