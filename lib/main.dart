@@ -4,6 +4,8 @@ import 'package:flutter_todo_app/axis/axis_sample.dart';
 import 'package:flutter_todo_app/dice/dice.dart';
 import 'package:flutter_todo_app/magicball/magic_ball.dart';
 import 'package:flutter_todo_app/mi_card/mi_card.dart';
+import 'package:flutter_todo_app/task_list.dart';
+import 'package:flutter_todo_app/xlyophone/xlyophone.dart';
 
 import 'add_task.dart';
 
@@ -76,7 +78,17 @@ class MainPage extends StatelessWidget {
               },
               child: Text('Magic Ball'),
             ),
-            // TaskList(),
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (context) => Xlyophone(),
+                    ));
+              },
+              child: Text('Xlyophone'),
+            ),
+            TaskList(),
             AddTask(),
           ],
         ),
