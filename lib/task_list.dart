@@ -37,7 +37,7 @@ class TaskList extends StatelessWidget {
                       ? const Icon(Icons.check_box_outline_blank)
                       : const Icon(Icons.check_box),
                   onPressed: () {
-                    TaskLogic.toggle(data['id'].toString());
+                    TaskLogic.toggle(document.id);
                   },
                 ),
                 title: Text('${data['taskName']}'),
@@ -45,7 +45,7 @@ class TaskList extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute<void>(
-                        builder: (context) => TaskDetail(data['id'].toString()),
+                        builder: (context) => TaskDetail(document.id),
                       ));
                 },
               ),
