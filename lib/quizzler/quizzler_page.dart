@@ -8,13 +8,13 @@ class QuizzlerPage extends StatefulWidget {
 }
 
 class _QuizzlerPageState extends State<QuizzlerPage> {
-  List<Icon> scoreKeeper = [
-    const Icon(Icons.check, color: Colors.green),
-    const Icon(Icons.close, color: Colors.red),
-    const Icon(Icons.check, color: Colors.green),
-    const Icon(Icons.close, color: Colors.red),
-    const Icon(Icons.check, color: Colors.green),
+  List<Icon> scoreKeeper = [];
+  List<String> questions = [
+    'You can lead a cow down stairs but not up stairs.',
+    'Approximately one quarter of human bones are in the feet.',
+    'A slug\'s blood is green.'
   ];
+  int currentQuestionNo = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +28,13 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            const Expanded(
+            Expanded(
               flex: 5,
               child: Padding(
                 padding: EdgeInsets.all(10),
                 child: Center(
                   child: Text(
-                    'This is where the question text will go.',
+                    questions[currentQuestionNo],
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 25,
@@ -53,6 +53,7 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
                         MaterialStateProperty.all<Color>(Colors.green),
                   ),
                   onPressed: () {
+                    countupQuestionNo();
                     //The user picked true.
                     scoreKeeper.add(const Icon(
                       Icons.check,
@@ -79,6 +80,7 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
                   ),
                   onPressed: () {
                     //The user picked false.
+                    countupQuestionNo();
                   },
                   child: const Text(
                     'False',
@@ -97,5 +99,11 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
         ),
       ),
     );
+  }
+
+  void countupQuestionNo(){
+    setState(() {
+      currentQuestionNo++;
+    });
   }
 }
