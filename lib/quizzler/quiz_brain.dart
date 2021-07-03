@@ -1,7 +1,8 @@
 import 'package:flutter_todo_app/quizzler/question.dart';
 
 class QuizBrain {
-  List<Question> questions = [
+  int _questionNo = 0;
+  final List<Question> _questions = [
     Question(q: 'Some cats are actually allergic to humans', a: true),
     Question(q: 'You can lead a cow down stairs but not up stairs.', a: false),
     Question(
@@ -30,4 +31,18 @@ class QuizBrain {
         q: 'In West Virginia, USA, if you accidentally hit an animal with your car, you are free to take it home to eat.',
         a: true),
   ];
+
+  void nextQuestion(){
+    if(_questionNo < _questions.length - 1 ){
+      _questionNo++;
+    }
+  }
+  
+  String getQuestionText(){
+    return _questions[_questionNo].questionText;
+  }
+
+  bool getQuestionAnswer(){
+    return _questions[_questionNo].questionAnswer;
+  }
 }
