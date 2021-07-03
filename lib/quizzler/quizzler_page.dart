@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_app/quizzler/quiz_brain.dart';
+
+QuizBrain quizBrain = QuizBrain();
 
 class QuizzlerPage extends StatefulWidget {
   const QuizzlerPage({Key? key}) : super(key: key);
@@ -9,13 +12,6 @@ class QuizzlerPage extends StatefulWidget {
 
 class _QuizzlerPageState extends State<QuizzlerPage> {
   List<Icon> scoreKeeper = [];
-  List<String> questions = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.'
-  ];
-
-  List<bool> answers = [false, true, true];
 
   int currentQuestionNo = 0;
 
@@ -37,7 +33,7 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
                 padding: EdgeInsets.all(10),
                 child: Center(
                   child: Text(
-                    questions[currentQuestionNo],
+                    quizBrain.questions[currentQuestionNo].questionText,
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 25,
@@ -106,14 +102,14 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
     );
   }
 
-  void countupQuestionNo(bool answer){
+  void countupQuestionNo(bool answer) {
     setState(() {
       currentQuestionNo++;
     });
   }
 
-  void checkAnswer(bool answer){
-    if(answers[currentQuestionNo] == answer){
+  void checkAnswer(bool answer) {
+    if (quizBrain.questions[currentQuestionNo].questionAnswer == answer) {
       print('correct answer !');
     } else {
       print('wrong answer...');
