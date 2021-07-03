@@ -14,6 +14,9 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
     'Approximately one quarter of human bones are in the feet.',
     'A slug\'s blood is green.'
   ];
+
+  List<bool> answers = [false, true, true];
+
   int currentQuestionNo = 0;
 
   @override
@@ -53,7 +56,8 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
                         MaterialStateProperty.all<Color>(Colors.green),
                   ),
                   onPressed: () {
-                    countupQuestionNo();
+                    checkAnswer(true);
+                    countupQuestionNo(true);
                     //The user picked true.
                     scoreKeeper.add(const Icon(
                       Icons.check,
@@ -80,7 +84,8 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
                   ),
                   onPressed: () {
                     //The user picked false.
-                    countupQuestionNo();
+                    checkAnswer(false);
+                    countupQuestionNo(false);
                   },
                   child: const Text(
                     'False',
@@ -101,9 +106,17 @@ class _QuizzlerPageState extends State<QuizzlerPage> {
     );
   }
 
-  void countupQuestionNo(){
+  void countupQuestionNo(bool answer){
     setState(() {
       currentQuestionNo++;
     });
+  }
+
+  void checkAnswer(bool answer){
+    if(answers[currentQuestionNo] == answer){
+      print('correct answer !');
+    } else {
+      print('wrong answer...');
+    }
   }
 }
