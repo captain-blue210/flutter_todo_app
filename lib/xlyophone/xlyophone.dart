@@ -32,6 +32,9 @@ class _XlyophoneState extends State<Xlyophone> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(
+          title: Text('Xlyophone'),
+        ),
         backgroundColor: Colors.black,
         body: SafeArea(
           child: Column(
