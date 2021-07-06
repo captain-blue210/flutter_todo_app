@@ -5,6 +5,7 @@ import 'package:flutter_todo_app/dice/dice.dart';
 import 'package:flutter_todo_app/magicball/magic_ball.dart';
 import 'package:flutter_todo_app/mi_card/mi_card.dart';
 import 'package:flutter_todo_app/quizzler/quizzler_page.dart';
+import 'package:flutter_todo_app/safearea/safeare-sample.dart';
 import 'package:flutter_todo_app/task_list.dart';
 import 'package:flutter_todo_app/xlyophone/xlyophone.dart';
 
@@ -67,6 +68,7 @@ class MainPage extends StatelessWidget {
             buildLinkButton(context, MagicBall(), 'Ask me anything'),
             buildLinkButton(context, Xlyophone(), 'Xlyophone'),
             buildLinkButton(context, QuizzlerPage(), 'Quizzler'),
+            buildLinkButton(context, SafeAreaSample(), 'SafeArea Sample'),
             TaskList(),
             AddTask(),
           ],
