@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_app/destini/story_brain.dart';
 
 class StoryPage extends StatefulWidget {
   const StoryPage({Key? key}) : super(key: key);
@@ -8,11 +9,12 @@ class StoryPage extends StatefulWidget {
 }
 
 class _StoryPageState extends State<StoryPage> {
+  StoryBrain storyBrain = StoryBrain();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        //TODO: Step 1 - Add background.png to this Container as a background image.,
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('images/background.png'),
@@ -29,8 +31,7 @@ class _StoryPageState extends State<StoryPage> {
                 flex: 12,
                 child: Center(
                   child: Text(
-                    //TODO: Step 10 - use the storyBrain to get the first story title and display it in this Text Widget.
-                    'Story text will go here.',
+                    storyBrain.getStory(),
                     style: TextStyle(
                       fontSize: 25.0,
                     ),
@@ -46,8 +47,7 @@ class _StoryPageState extends State<StoryPage> {
                   },
                   color: Colors.red,
                   child: Text(
-                    //TODO: Step 13 - Use the storyBrain to get the text for choice 1.
-                    'Choice 1',
+                    storyBrain.getChoice1(),
                     style: TextStyle(
                       fontSize: 20.0,
                     ),
@@ -68,8 +68,7 @@ class _StoryPageState extends State<StoryPage> {
                   },
                   color: Colors.blue,
                   child: Text(
-                    //TODO: Step 14 - Use the storyBrain to get the text for choice 2.
-                    'Choice 2',
+                    storyBrain.getChoice2(),
                     style: TextStyle(
                       fontSize: 20.0,
                     ),
