@@ -43,6 +43,7 @@ class _StoryPageState extends State<StoryPage> {
                 child: FlatButton(
                   onPressed: () {
                     //Choice 1 made by user.
+                    storyBrain.nextStory(1);
                     //TODO: Step 18 - Call the nextStory() method from storyBrain and pass the number 1 as the choice made by the user.
                   },
                   color: Colors.red,
@@ -64,6 +65,7 @@ class _StoryPageState extends State<StoryPage> {
                 child: FlatButton(
                   onPressed: () {
                     //Choice 2 made by user.
+                    storyBrain.nextStory(2);
                     //TODO: Step 19 - Call the nextStory() method from storyBrain and pass the number 2 as the choice made by the user.
                   },
                   color: Colors.blue,
