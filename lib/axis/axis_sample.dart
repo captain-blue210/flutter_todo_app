@@ -8,26 +8,24 @@ class AxisSample extends StatelessWidget {
         title: const Text('Axis Sample'),
       ),
       body: SafeArea(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             Expanded(
-              child:Container(
-                height: 100,
+              flex: 1,
+              child: Container(
                 color: Colors.red,
               ),
             ),
             Expanded(
-              flex: 2,
+              flex: 3,
               child: Container(
                 color: Colors.blue,
               ),
             ),
-            Expanded(
-              child: Container(
-                height: 100,
-                color: Colors.green,
-              ),
+            Container(
+              height: 100,
+              color: Colors.green,
             )
           ],
         ),
