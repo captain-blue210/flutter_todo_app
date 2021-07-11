@@ -11,13 +11,14 @@ class NewButtonStyle extends StatelessWidget {
       ),
       body: Center(
         child: TextButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(Colors.teal),
-            overlayColor: MaterialStateProperty.all<Color>(Colors.teal.shade300)
+          style: TextButton.styleFrom(
+            backgroundColor: Colors.teal,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(100)),
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 30),
           ),
-          onPressed: () {
-
-          },
+          onPressed: () {},
           child: const Text(
               'サンプル',
             style: TextStyle(
