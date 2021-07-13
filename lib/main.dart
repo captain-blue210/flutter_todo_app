@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/axis/axis_sample.dart';
+import 'package:flutter_todo_app/bmicalculator/input_page.dart';
 import 'package:flutter_todo_app/boxdecoration/background_image.dart';
 import 'package:flutter_todo_app/buttonstyle/new_button_style.dart';
 import 'package:flutter_todo_app/destini/stroy_page.dart';
@@ -79,6 +80,7 @@ class MainPage extends StatelessWidget {
             buildLinkButton(context, StoryPage(), 'Destini'),
             buildLinkButton(context, BackGroundImage(), 'BoxDecoration Sample'),
             buildLinkButton(context, NewButtonStyle(), 'Button Sample'),
+            buildLinkButton(context, InputPage(), 'BMI Calculator'),
             TaskList(),
             AddTask(),
           ],
