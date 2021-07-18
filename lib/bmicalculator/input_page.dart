@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 const bottomContainerHeight = 80.0;
 const avtiveCardColor = Color(0xFF1D1E33);
@@ -23,25 +24,22 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-                Expanded(
+                const Expanded(
                   child: ReusableCard(
                     color: avtiveCardColor,
+                    cardChild: IconContent(
+                      icon: FontAwesomeIcons.mars,
+                      name: 'MALE',
+                    )
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     color: avtiveCardColor,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  child: ReusableCard(
-                    color: avtiveCardColor,
+                    cardChild: IconContent(
+                      icon: FontAwesomeIcons.venus,
+                      name: 'FEMALE',
+                    )
                   ),
                 ),
               ],
@@ -53,11 +51,76 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     color: avtiveCardColor,
+                    cardChild: Column(
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.mars,
+                          size: 80,
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          'MALE',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Color(0xFF8D8E98),
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Row(
+              children: [
+                Expanded(
+                  child: ReusableCard(
+                    color: avtiveCardColor,
+                    cardChild: Column(
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.mars,
+                          size: 80,
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          'MALE',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Color(0xFF8D8E98),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
                 Expanded(
                   child: ReusableCard(
                     color: avtiveCardColor,
+                    cardChild: Column(
+                      children: [
+                        Icon(
+                          FontAwesomeIcons.mars,
+                          size: 80,
+                        ),
+                        SizedBox(
+                          height: 15,
+                        ),
+                        Text(
+                          'MALE',
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: Color(0xFF8D8E98),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ],
@@ -76,9 +139,10 @@ class _InputPageState extends State<InputPage> {
 }
 
 class ReusableCard extends StatelessWidget {
-  const ReusableCard({required this.color});
+  const ReusableCard({required this.color, required this.cardChild});
 
   final Color color;
+  final Widget cardChild;
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +152,40 @@ class ReusableCard extends StatelessWidget {
         color: const Color(0xFF1D1E33),
         borderRadius: BorderRadius.circular(10),
       ),
+      child: cardChild,
+    );
+  }
+}
+
+class IconContent extends StatelessWidget {
+  const IconContent({
+    required this.icon,
+    required this.name
+});
+
+  final IconData icon;
+  final String name;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          icon,
+          size: 80,
+        ),
+        const SizedBox(
+          height: 15,
+        ),
+        Text(
+          name,
+          style: const TextStyle(
+            fontSize: 18,
+            color: Color(0xFF8D8E98),
+          ),
+        )
+      ],
     );
   }
 }
