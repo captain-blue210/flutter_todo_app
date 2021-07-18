@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_app/bmicalculator/constants.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'icon_content.dart';
 import 'reusable_card.dart';
-
-const bottomContainerHeight = 80.0;
-const activeCardColor = Color(0xFF1D1E33);
-const inactiveCardColor = Color(0xFF111328);
-const bottomeContainerColor = Color(0xFFEB1555);
-
 
 enum Gender {
   male,
@@ -44,7 +39,7 @@ class _InputPageState extends State<InputPage> {
                         selectedGender = Gender.male;
                       });
                     },
-                    color: selectedGender == Gender.male ? activeCardColor : inactiveCardColor,
+                    color: selectedGender == Gender.male ? kActiveCardColor : kInactiveCardColor,
                     cardChild: IconContent(
                       icon: FontAwesomeIcons.mars,
                       name: 'MALE',
@@ -58,7 +53,7 @@ class _InputPageState extends State<InputPage> {
                         selectedGender = Gender.female;
                       });
                     },
-                    color: selectedGender == Gender.female ? activeCardColor : inactiveCardColor,
+                    color: selectedGender == Gender.female ? kActiveCardColor : kInactiveCardColor,
                     cardChild: IconContent(
                       icon: FontAwesomeIcons.venus,
                       name: 'FEMALE',
@@ -76,7 +71,7 @@ class _InputPageState extends State<InputPage> {
                     onTap: () {
 
                     },
-                    color: activeCardColor,
+                    color: kActiveCardColor,
                     cardChild: Column(
                       children: [
                         Icon(
@@ -108,7 +103,7 @@ class _InputPageState extends State<InputPage> {
                     onTap: () {
 
                     },
-                    color: activeCardColor,
+                    color: kActiveCardColor,
                     cardChild: Column(
                       children: [
                         Icon(
@@ -134,7 +129,7 @@ class _InputPageState extends State<InputPage> {
                     onTap: () {
 
                     },
-                    color: activeCardColor,
+                    color: kActiveCardColor,
                     cardChild: Column(
                       children: [
                         Icon(
@@ -159,10 +154,10 @@ class _InputPageState extends State<InputPage> {
             ),
           ),
           Container(
-            color: bottomeContainerColor,
+            color: kBottomContainerColor,
             margin: EdgeInsets.only(top:10),
             width: double.infinity,
-            height: bottomContainerHeight,
+            height: kBottomContainerHeight,
           )
         ],
       ),
