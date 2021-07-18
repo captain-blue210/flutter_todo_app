@@ -5,8 +5,14 @@ import 'icon_content.dart';
 import 'reusable_card.dart';
 
 const bottomContainerHeight = 80.0;
-const avtiveCardColor = Color(0xFF1D1E33);
+const activeCardColor = Color(0xFF1D1E33);
+const inactiveCardColor = Color(0xFF111328);
 const bottomeContainerColor = Color(0xFFEB1555);
+
+enum Gender {
+  male,
+  female
+}
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -16,6 +22,29 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+
+  Color maleCardColor = inactiveCardColor;
+  Color femaleCardColor = inactiveCardColor;
+
+  void updateColor(Gender gender){
+    if (Gender.male == gender) {
+      if(maleCardColor == inactiveCardColor) {
+        maleCardColor = activeCardColor;
+        femaleCardColor = inactiveCardColor;
+      } else {
+        maleCardColor = inactiveCardColor;
+      }
+    }
+    if(Gender.female == gender){
+      if(femaleCardColor == inactiveCardColor) {
+        femaleCardColor = activeCardColor;
+        maleCardColor = inactiveCardColor;
+      } else {
+        femaleCardColor = inactiveCardColor;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,22 +56,37 @@ class _InputPageState extends State<InputPage> {
           Expanded(
             child: Row(
               children: [
-                const Expanded(
-                  child: ReusableCard(
-                    color: avtiveCardColor,
-                    cardChild: IconContent(
-                      icon: FontAwesomeIcons.mars,
-                      name: 'MALE',
-                    )
+                Expanded(
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        updateColor(Gender.male);
+                        print(maleCardColor);
+                      });
+                    },
+                    child: ReusableCard(
+                      color: maleCardColor,
+                      cardChild: IconContent(
+                        icon: FontAwesomeIcons.mars,
+                        name: 'MALE',
+                      )
+                    ),
                   ),
                 ),
                 Expanded(
-                  child: ReusableCard(
-                    color: avtiveCardColor,
-                    cardChild: IconContent(
-                      icon: FontAwesomeIcons.venus,
-                      name: 'FEMALE',
-                    )
+                  child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        updateColor(Gender.female);
+                      });
+                    },
+                    child: ReusableCard(
+                      color: femaleCardColor,
+                      cardChild: IconContent(
+                        icon: FontAwesomeIcons.venus,
+                        name: 'FEMALE',
+                      )
+                    ),
                   ),
                 ),
               ],
@@ -53,7 +97,7 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    color: avtiveCardColor,
+                    color: activeCardColor,
                     cardChild: Column(
                       children: [
                         Icon(
@@ -82,7 +126,7 @@ class _InputPageState extends State<InputPage> {
               children: [
                 Expanded(
                   child: ReusableCard(
-                    color: avtiveCardColor,
+                    color: activeCardColor,
                     cardChild: Column(
                       children: [
                         Icon(
@@ -105,7 +149,7 @@ class _InputPageState extends State<InputPage> {
                 ),
                 Expanded(
                   child: ReusableCard(
-                    color: avtiveCardColor,
+                    color: activeCardColor,
                     cardChild: Column(
                       children: [
                         Icon(
