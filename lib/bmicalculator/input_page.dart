@@ -18,6 +18,7 @@ class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int height = 180;
   int weight = 60;
+  int age = 18;
 
   @override
   Widget build(BuildContext context) {
@@ -170,13 +171,43 @@ class _InputPageState extends State<InputPage> {
                     onTap: () {},
                     color: kActiveCardColor,
                     cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          'MALE',
+                          'AGE',
                           style: TextStyle(
                             fontSize: 18,
                             color: Color(0xFF8D8E98),
                           ),
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kHeightLabelTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            RoundIconButton(
+                              icon: Icons.add,
+                              onPressed: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            RoundIconButton(
+                              icon: Icons.remove,
+                              onPressed: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            ),
+                          ],
                         )
                       ],
                     ),
