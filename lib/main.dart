@@ -11,6 +11,7 @@ import 'package:flutter_todo_app/mi_card/mi_card.dart';
 import 'package:flutter_todo_app/quizzler/quizzler_page.dart';
 import 'package:flutter_todo_app/safearea/safeare-sample.dart';
 import 'package:flutter_todo_app/task_list.dart';
+import 'package:flutter_todo_app/visibility/visibility_sample.dart';
 import 'package:flutter_todo_app/xlyophone/xlyophone.dart';
 
 import 'add_task.dart';
@@ -81,6 +82,7 @@ class MainPage extends StatelessWidget {
             buildLinkButton(context, BackGroundImage(), 'BoxDecoration Sample'),
             buildLinkButton(context, NewButtonStyle(), 'Button Sample'),
             buildLinkButton(context, InputPage(), 'BMI Calculator'),
+            buildLinkButton(context, VisibilitySample(), 'Visibility Sample'),
             TaskList(),
             AddTask(),
           ],
