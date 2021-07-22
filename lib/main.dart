@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/axis/axis_sample.dart';
-import 'package:flutter_todo_app/bmicalculator/input_page.dart';
+import 'package:flutter_todo_app/bmicalculator/screen/input_page.dart';
 import 'package:flutter_todo_app/boxdecoration/background_image.dart';
 import 'package:flutter_todo_app/buttonstyle/new_button_style.dart';
 import 'package:flutter_todo_app/destini/stroy_page.dart';
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MainPage extends StatelessWidget {
-  Widget buildLinkButton(BuildContext context, Widget widget, String linkName){
+  Widget buildLinkButton(BuildContext context, Widget widget, String linkName) {
     return TextButton(
       onPressed: () {
         Navigator.push(

@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_todo_app/bmicalculator/calculator_brain.dart';
+import 'package:flutter_todo_app/bmicalculator/components/bottom_button.dart';
+import 'package:flutter_todo_app/bmicalculator/components/icon_content.dart';
+import 'package:flutter_todo_app/bmicalculator/components/result_page.dart';
+import 'package:flutter_todo_app/bmicalculator/components/reusable_card.dart';
+import 'package:flutter_todo_app/bmicalculator/components/round_icon_button.dart';
 import 'package:flutter_todo_app/bmicalculator/constants.dart';
+import 'package:flutter_todo_app/bmicalculator/gender.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-import 'icon_content.dart';
-import 'reusable_card.dart';
-
-enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -216,36 +218,24 @@ class _InputPageState extends State<InputPage> {
               ],
             ),
           ),
-          Container(
-            color: kBottomContainerColor,
-            margin: EdgeInsets.only(top: 10),
-            width: double.infinity,
-            height: kBottomContainerHeight,
+          BottomButton(
+            onTap: () {
+              CalculatorBrain calc = CalculatorBrain(height, weight);
+
+              Navigator.push(
+                  context,
+                  MaterialPageRoute<ResultPage>(
+                    builder: (context) => ResultPage(
+                      bmiResult: calc.calculateBMI(),
+                      resultText: calc.getResult(),
+                      interpretation: calc.getInterpretation(),
+                    ),
+                  ));
+            },
+            buttonTitle: 'CALCULATE',
           )
         ],
       ),
-    );
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({required this.icon, required this.onPressed});
-
-  final IconData icon;
-  final VoidCallback onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      onPressed: onPressed,
-      elevation: 0,
-      constraints: BoxConstraints.tightFor(
-        width: 56,
-        height: 56,
-      ),
-      shape: CircleBorder(),
-      fillColor: Color(0xFF4C4F5E),
     );
   }
 }
