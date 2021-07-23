@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_todo_app/clima/services/location.dart';
-import 'package:http/http.dart';
+import 'package:flutter_todo_app/clima/services/networking.dart';
+
+const appKey = 'be2a32e308a082c32616eb2dc3546360';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -8,33 +10,32 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
+  double? latitude;
+  double? longitude;
+
   @override
   void initState() {
     super.initState();
-    getlocation();
+    getLocationData();
   }
 
-  void getlocation() async {
+  void getLocationData() async {
     Location location = Location();
     await location.getCurrentlocation();
-    print(location.latitude);
-    print(location.longitude);
-  }
+    latitude = location.latitude;
+    longitude = location.longitude;
 
-  void getData() async {
-    Response response = await get(Uri.parse(
-        'https://samples.openweathermap.org/data/2.5/weather?lat=35&lon=139&appid=b6907d289e10d714a6e88b30761fae22'));
+    NetworkHelper networkHelper = NetworkHelper(
+        "https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$appKey");
 
-    if (response.statusCode == 200) {
-      print(response.body);
-    } else {
-      print(response.statusCode);
-    }
+    dynamic decodeData = await networkHelper.getData();
+    // print(decodeData['main']['temp']);
+    // print(decodeData['weather'][0]['id']);
+    // print(decodeData['name']);
   }
 
   @override
   Widget build(BuildContext context) {
-    getData();
     String myMargin = '12';
     double? myMarginAsDouble;
 
