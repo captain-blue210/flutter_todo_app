@@ -4,6 +4,7 @@ import 'package:flutter_todo_app/axis/axis_sample.dart';
 import 'package:flutter_todo_app/bmicalculator/screen/input_page.dart';
 import 'package:flutter_todo_app/boxdecoration/background_image.dart';
 import 'package:flutter_todo_app/buttonstyle/new_button_style.dart';
+import 'package:flutter_todo_app/clima/screens/loading_screen.dart';
 import 'package:flutter_todo_app/destini/stroy_page.dart';
 import 'package:flutter_todo_app/dice/dice.dart';
 import 'package:flutter_todo_app/magicball/magic_ball.dart';
@@ -83,6 +84,7 @@ class MainPage extends StatelessWidget {
             buildLinkButton(context, NewButtonStyle(), 'Button Sample'),
             buildLinkButton(context, InputPage(), 'BMI Calculator'),
             buildLinkButton(context, VisibilitySample(), 'Visibility Sample'),
+            buildLinkButton(context, LoadingScreen(), 'Clima'),
             TaskList(),
             AddTask(),
           ],
