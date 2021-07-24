@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_todo_app/clima/services/location.dart';
-import 'package:flutter_todo_app/clima/services/networking.dart';
-
-const appKey = 'be2a32e308a082c32616eb2dc3546360';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_todo_app/clima/screens/location_screen.dart';
+import 'package:flutter_todo_app/clima/services/weather.dart';
 
 class LoadingScreen extends StatefulWidget {
   @override
@@ -10,6 +9,7 @@ class LoadingScreen extends StatefulWidget {
 }
 
 class _LoadingScreenState extends State<LoadingScreen> {
+  WeatherModel weather = WeatherModel();
   double? latitude;
   double? longitude;
 
@@ -20,35 +20,23 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void getLocationData() async {
-    Location location = Location();
-    await location.getCurrentlocation();
-    latitude = location.latitude;
-    longitude = location.longitude;
+    dynamic weatherData = await weather.getLocationWeather();
 
-    NetworkHelper networkHelper = NetworkHelper(
-        "https://api.openweathermap.org/data/2.5/weather?lat=$latitude&lon=$longitude&appid=$appKey");
-
-    dynamic decodeData = await networkHelper.getData();
-    // print(decodeData['main']['temp']);
-    // print(decodeData['weather'][0]['id']);
-    // print(decodeData['name']);
+    Navigator.push(context, MaterialPageRoute<LocationScreen>(
+      builder: (context) {
+        return LocationScreen(locationWeather: weatherData);
+      },
+    ));
   }
 
   @override
   Widget build(BuildContext context) {
-    String myMargin = '12';
-    double? myMarginAsDouble;
-
-    try {
-      myMarginAsDouble = double.parse(myMargin);
-    } catch (e) {
-      print(e);
-    }
-
     return Scaffold(
-      body: Container(
-        margin: EdgeInsets.all(myMarginAsDouble ?? 30.0),
-        color: Colors.red,
+      body: Center(
+        child: SpinKitDoubleBounce(
+          color: Colors.white,
+          size: 100,
+        ),
       ),
     );
   }

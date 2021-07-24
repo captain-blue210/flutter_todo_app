@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_todo_app/axis/axis_sample.dart';
 import 'package:flutter_todo_app/bmicalculator/screen/input_page.dart';
 import 'package:flutter_todo_app/boxdecoration/background_image.dart';
@@ -20,6 +21,7 @@ import 'add_task.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+  await dotenv.load(fileName: '.env');
   runApp(MyApp());
 }
 
