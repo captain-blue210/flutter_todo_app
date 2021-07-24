@@ -9,6 +9,7 @@ import 'package:flutter_todo_app/buttonstyle/new_button_style.dart';
 import 'package:flutter_todo_app/clima/screens/loading_screen.dart';
 import 'package:flutter_todo_app/destini/stroy_page.dart';
 import 'package:flutter_todo_app/dice/dice.dart';
+import 'package:flutter_todo_app/flash_chat/welcome_screen.dart';
 import 'package:flutter_todo_app/magicball/magic_ball.dart';
 import 'package:flutter_todo_app/mi_card/mi_card.dart';
 import 'package:flutter_todo_app/quizzler/quizzler_page.dart';
@@ -89,6 +90,7 @@ class MainPage extends StatelessWidget {
             buildLinkButton(context, VisibilitySample(), 'Visibility Sample'),
             buildLinkButton(context, LoadingScreen(), 'Clima'),
             buildLinkButton(context, PriceScreen(), 'Bitcoin Ticker'),
+            buildLinkButton(context, WelcomeScreen(), 'Flash chat'),
             TaskList(),
             AddTask(),
           ],
