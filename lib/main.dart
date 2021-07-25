@@ -14,11 +14,9 @@ import 'package:flutter_todo_app/magicball/magic_ball.dart';
 import 'package:flutter_todo_app/mi_card/mi_card.dart';
 import 'package:flutter_todo_app/quizzler/quizzler_page.dart';
 import 'package:flutter_todo_app/safearea/safeare-sample.dart';
-import 'package:flutter_todo_app/task_list.dart';
+import 'package:flutter_todo_app/todoey/screens/tasks_screen.dart';
 import 'package:flutter_todo_app/visibility/visibility_sample.dart';
 import 'package:flutter_todo_app/xlyophone/xlyophone.dart';
-
-import 'add_task.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -91,8 +89,9 @@ class MainPage extends StatelessWidget {
             buildLinkButton(context, LoadingScreen(), 'Clima'),
             buildLinkButton(context, PriceScreen(), 'Bitcoin Ticker'),
             buildLinkButton(context, WelcomeScreen(), 'Flash chat'),
-            TaskList(),
-            AddTask(),
+            buildLinkButton(context, TasksScreen(), 'Todoey'),
+            // TaskList(),
+            // AddTask(),
           ],
         ),
       ),
