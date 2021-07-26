@@ -2,8 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AddTaskScreen extends StatelessWidget {
+  final Function addTaskCallback;
+
+  AddTaskScreen(this.addTaskCallback);
+
   @override
   Widget build(BuildContext context) {
+    String? newTaskTitle;
+
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -25,11 +31,13 @@ class AddTaskScreen extends StatelessWidget {
             ),
             TextField(
               autofocus: true,
-              onChanged: (value) {},
+              onChanged: (value) => newTaskTitle = value,
               textAlign: TextAlign.center,
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                addTaskCallback(newTaskTitle);
+              },
               style: TextButton.styleFrom(
                 backgroundColor: Colors.lightBlueAccent,
               ),
