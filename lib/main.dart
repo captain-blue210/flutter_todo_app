@@ -12,6 +12,7 @@ import 'package:flutter_todo_app/dice/dice.dart';
 import 'package:flutter_todo_app/flash_chat/welcome_screen.dart';
 import 'package:flutter_todo_app/magicball/magic_ball.dart';
 import 'package:flutter_todo_app/mi_card/mi_card.dart';
+import 'package:flutter_todo_app/provider_sample/provider_sample.dart';
 import 'package:flutter_todo_app/quizzler/quizzler_page.dart';
 import 'package:flutter_todo_app/safearea/safeare-sample.dart';
 import 'package:flutter_todo_app/todoey/screens/tasks_screen.dart';
@@ -72,7 +73,7 @@ class MainPage extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Column(
+        child: ListView(
           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             buildLinkButton(context, Dice(), 'Dicee'),
@@ -90,6 +91,7 @@ class MainPage extends StatelessWidget {
             buildLinkButton(context, PriceScreen(), 'Bitcoin Ticker'),
             buildLinkButton(context, WelcomeScreen(), 'Flash chat'),
             buildLinkButton(context, TasksScreen(), 'Todoey'),
+            buildLinkButton(context, ProviderSample(), 'Provider Sample'),
             // TaskList(),
             // AddTask(),
           ],
