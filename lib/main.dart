@@ -12,13 +12,14 @@ import 'package:flutter_todo_app/dice/dice.dart';
 import 'package:flutter_todo_app/flash_chat/welcome_screen.dart';
 import 'package:flutter_todo_app/magicball/magic_ball.dart';
 import 'package:flutter_todo_app/mi_card/mi_card.dart';
+import 'package:flutter_todo_app/provider_sample/provider_sample.dart';
 import 'package:flutter_todo_app/quizzler/quizzler_page.dart';
 import 'package:flutter_todo_app/safearea/safeare-sample.dart';
-import 'package:flutter_todo_app/task_list.dart';
+import 'package:flutter_todo_app/todoey/models/tasks.dart';
+import 'package:flutter_todo_app/todoey/screens/tasks_screen.dart';
 import 'package:flutter_todo_app/visibility/visibility_sample.dart';
 import 'package:flutter_todo_app/xlyophone/xlyophone.dart';
-
-import 'add_task.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,13 +31,16 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.dark().copyWith(
-        primaryColor: Color(0xFF020E21),
-        scaffoldBackgroundColor: Color(0xFF020E21),
+    return ChangeNotifierProvider(
+      create: (context) => Tasks(),
+      child: MaterialApp(
+        // theme: ThemeData.dark().copyWith(
+        //   primaryColor: Color(0xFF020E21),
+        //   scaffoldBackgroundColor: Color(0xFF020E21),
+        // ),
+        title: 'TODO',
+        home: MainPage(),
       ),
-      title: 'TODO',
-      home: MainPage(),
     );
   }
 }
@@ -74,7 +78,7 @@ class MainPage extends StatelessWidget {
         ],
       ),
       body: Center(
-        child: Column(
+        child: ListView(
           //mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             buildLinkButton(context, Dice(), 'Dicee'),
@@ -91,8 +95,10 @@ class MainPage extends StatelessWidget {
             buildLinkButton(context, LoadingScreen(), 'Clima'),
             buildLinkButton(context, PriceScreen(), 'Bitcoin Ticker'),
             buildLinkButton(context, WelcomeScreen(), 'Flash chat'),
-            TaskList(),
-            AddTask(),
+            buildLinkButton(context, TasksScreen(), 'Todoey'),
+            buildLinkButton(context, ProviderSample(), 'Provider Sample'),
+            // TaskList(),
+            // AddTask(),
           ],
         ),
       ),
