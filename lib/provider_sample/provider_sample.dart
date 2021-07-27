@@ -2,14 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProviderSample extends StatelessWidget {
-  final String data = 'sample';
-
   @override
   Widget build(BuildContext context) {
-    return Provider<String>(
-      create: (context) => data,
+    return ChangeNotifierProvider<Data>(
+      create: (context) => Data(),
       child: Scaffold(
-        appBar: AppBar(title: Text('Provider Sample')),
+        appBar: AppBar(title: MyText()),
         body: Level1(),
       ),
     );
@@ -28,8 +26,13 @@ class Level1 extends StatelessWidget {
 class Level2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Level3(),
+    return Column(
+      children: [
+        MyTextField(),
+        Container(
+          child: Level3(),
+        ),
+      ],
     );
   }
 }
@@ -37,6 +40,33 @@ class Level2 extends StatelessWidget {
 class Level3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Text(Provider.of<String>(context));
+    return Text(Provider.of<Data>(context).data);
+  }
+}
+
+class MyText extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Text(Provider.of<Data>(context).data);
+  }
+}
+
+class MyTextField extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      onChanged: (value) {
+        Provider.of<Data>(context, listen: false).changeString(value);
+      },
+    );
+  }
+}
+
+class Data extends ChangeNotifier {
+  String data = 'test';
+
+  void changeString(String newValue) {
+    data = newValue;
+    notifyListeners();
   }
 }
