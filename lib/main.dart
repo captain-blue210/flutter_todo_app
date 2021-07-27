@@ -15,9 +15,11 @@ import 'package:flutter_todo_app/mi_card/mi_card.dart';
 import 'package:flutter_todo_app/provider_sample/provider_sample.dart';
 import 'package:flutter_todo_app/quizzler/quizzler_page.dart';
 import 'package:flutter_todo_app/safearea/safeare-sample.dart';
+import 'package:flutter_todo_app/todoey/models/tasks.dart';
 import 'package:flutter_todo_app/todoey/screens/tasks_screen.dart';
 import 'package:flutter_todo_app/visibility/visibility_sample.dart';
 import 'package:flutter_todo_app/xlyophone/xlyophone.dart';
+import 'package:provider/provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,13 +31,16 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      // theme: ThemeData.dark().copyWith(
-      //   primaryColor: Color(0xFF020E21),
-      //   scaffoldBackgroundColor: Color(0xFF020E21),
-      // ),
-      title: 'TODO',
-      home: MainPage(),
+    return ChangeNotifierProvider(
+      create: (context) => Tasks(),
+      child: MaterialApp(
+        // theme: ThemeData.dark().copyWith(
+        //   primaryColor: Color(0xFF020E21),
+        //   scaffoldBackgroundColor: Color(0xFF020E21),
+        // ),
+        title: 'TODO',
+        home: MainPage(),
+      ),
     );
   }
 }
